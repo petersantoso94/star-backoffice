@@ -25,14 +25,23 @@
     <el-table :data="dataTable" style="width: 100%;">
       <slot name="column"></slot>
     </el-table>
-    <el-pagination
-      layout="prev, pager, next"
-      :current-page.sync="currentPage"
-      :total="data.length"
-      :page-size.sync="itemPerPage"
-      :hide-on-single-page="true"
-    >
-    </el-pagination>
+    <el-row type="flex" class="row-bg" justify="space-between">
+      <el-col :span="6">
+        <el-pagination
+          layout="prev, pager, next"
+          :current-page.sync="currentPage"
+          :total="data.length"
+          :page-size.sync="itemPerPage"
+          :hide-on-single-page="true"
+        >
+        </el-pagination>
+      </el-col>
+      <el-col :span="6" v-if="data.length > 0">
+        {{
+          beginningIndex + " - " + endIndex + " of " + data.length + " items"
+        }}
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -62,6 +71,13 @@ export default {
       return tempData
         .filter(data => !this.search || this.searchHandler(data))
         .splice((this.currentPage - 1) * this.itemPerPage, this.itemPerPage);
+    },
+    beginningIndex() {
+      return (this.currentPage - 1) * this.itemPerPage + 1;
+    },
+    endIndex() {
+      const endIdx = this.beginningIndex + this.itemPerPage - 1;
+      return this.data.length >= endIdx ? endIdx : this.data.length;
     }
   }
 };

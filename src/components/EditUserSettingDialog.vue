@@ -18,9 +18,6 @@
         {{ formData.status ? "凍結" : "一般" }}
       </el-form-item>
       <br />
-      <el-form-item size="mini" label=" ">
-        <el-checkbox label="凍結" v-model="formData.status"></el-checkbox>
-      </el-form-item>
       <el-form-item size="mini" label="原因:">
         <el-input type="textarea" v-model="formData.desc"></el-input
       ></el-form-item>
@@ -31,7 +28,7 @@
         type="primary"
         size="mini"
         @click.prevent="submitForm(formData)"
-        >更新</el-button
+        >{{ !formData.status ? "凍結" : "解凍" }}</el-button
       >
     </span>
   </el-dialog>

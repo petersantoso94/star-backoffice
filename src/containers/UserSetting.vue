@@ -1,23 +1,23 @@
 <template>
   <div>
-    <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-      <el-form-item label="商戶:">
-        <el-select v-model="searchForm.merchant" placeholder="請選擇">
-          <el-option label="AD" value="ad"></el-option>
-          <el-option label="SL" value="sl"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="帳號:">
-        <el-input v-model="searchForm.account" />
-      </el-form-item>
-      <el-form-item>
-        <el-button @click="onSubmit" icon="el-icon-search"></el-button>
-      </el-form-item>
-    </el-form>
-    <el-tabs type="card">
-      <el-tab-pane label="用戶管理"
-        ><TableWithPageAndSearch
-          :data="userManagementData"
+    <el-tabs type="card" @tab-click="tabClickHandler" value="open">
+      <el-tab-pane label="用戶管理" name="open" key="open">
+        <el-form :inline="true" :model="searchForm" class="demo-form-inline">
+          <el-form-item label="商戶:">
+            <el-select v-model="searchForm.merchant" placeholder="請選擇">
+              <el-option label="AD" value="ad"></el-option>
+              <el-option label="SL" value="sl"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="帳號:">
+            <el-input v-model="searchForm.account" />
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="onSubmit" icon="el-icon-search"></el-button>
+          </el-form-item>
+        </el-form>
+        <TableWithPageAndSearch
+          :data="userManagementDataTable"
           :columnToSearch="userManagementColumnSearch"
         >
           <template slot="column"
@@ -39,8 +39,73 @@
               </template> </el-table-column
           ></template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="凍結名單">凍結名單</el-tab-pane>
-      <el-tab-pane label="凍結LOG">凍結LOG</el-tab-pane>
+      <el-tab-pane label="凍結名單" name="closed" key="closed">
+        <el-form :inline="true" :model="searchForm" class="demo-form-inline">
+          <el-form-item label="商戶:">
+            <el-select v-model="searchForm.merchant" placeholder="請選擇">
+              <el-option label="AD" value="ad"></el-option>
+              <el-option label="SL" value="sl"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="帳號:">
+            <el-input v-model="searchForm.account" />
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="onSubmit" icon="el-icon-search"></el-button>
+          </el-form-item> </el-form
+        ><TableWithPageAndSearch
+          :data="userManagementDataTable"
+          :columnToSearch="userManagementColumnSearch"
+        >
+          <template slot="column"
+            ><el-table-column label="商戶" prop="merchant"> </el-table-column>
+            <el-table-column label="帳號" prop="accountNumber">
+            </el-table-column>
+            <el-table-column label="暱稱" prop="nickname"> </el-table-column>
+            <el-table-column label="USER ID" prop="uuid"> </el-table-column>
+            <el-table-column label="帳戶餘額" prop="balance"> </el-table-column>
+            <el-table-column label="最近登入時間" prop="lastLogin">
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-edit-outline"
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                ></el-button>
+              </template> </el-table-column
+          ></template> </TableWithPageAndSearch
+      ></el-tab-pane>
+      <el-tab-pane label="凍結LOG">
+        <el-form :inline="true" :model="searchForm" class="demo-form-inline">
+          <el-form-item label="查詢-帳號:">
+            <el-input v-model="searchForm.account" size="mini" />
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              @click="onSubmit"
+              size="mini"
+              icon="el-icon-search"
+            ></el-button>
+          </el-form-item> </el-form
+        ><TableWithPageAndSearch
+          :data="userManagementData"
+          :columnToSearch="userManagementColumnSearch"
+        >
+          <template slot="column">
+            <el-table-column label="帳號" prop="accountNumber">
+            </el-table-column>
+            <el-table-column label="暱稱" prop="nickname"> </el-table-column>
+            <el-table-column label="帳戶餘額" prop="balance"> </el-table-column>
+            <el-table-column label="種類" prop="status">
+              <template slot-scope="scope">
+                {{ scope.row.status ? "凍結" : "一般" }}
+              </template></el-table-column
+            >
+            <el-table-column label="時間" prop="lastLogin"></el-table-column>
+            <el-table-column label="操作人" prop="operator"> </el-table-column
+          ></template> </TableWithPageAndSearch
+      ></el-tab-pane>
     </el-tabs>
     <EditUserSettingDialog
       v-if="showEditUserManagement"
@@ -65,17 +130,14 @@ export default {
   components: { TableWithPageAndSearch, EditUserSettingDialog },
   data: () => ({
     searchForm: { merchant: "", account: "" },
+    tabOpen: false,
     userManagementData: [],
-    userBlockData: [],
     userBlockLog: [],
     userManagementColumnSearch: ["nickname", "uuid"],
-    userBlockColumnSearch: [],
     userBlockLogColumnSearch: [],
     selectedUserManagementData: {},
-    selectedUserBlockData: {},
     selectedUserBlockLog: {},
     showEditUserManagement: false,
-    showEditUserBlockData: false,
     showEditUserBlockLog: false
   }),
   mounted() {
@@ -113,6 +175,14 @@ export default {
         message: "Succesfully Edited.",
         type: "success"
       });
+    },
+    tabClickHandler(tab) {
+      this.tabOpen = tab.name !== "open";
+    }
+  },
+  computed: {
+    userManagementDataTable() {
+      return this.userManagementData.filter(el => el.status === this.tabOpen);
     }
   }
 };

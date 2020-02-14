@@ -7,12 +7,12 @@
       :model="formData"
     >
       <el-form-item size="mini" label="遊戲編號:">
-        {{ formData.id }} </el-form-item
-      ><br />
+        {{ formData.id }}
+      </el-form-item>
       <el-form-item size="mini" label="遊戲名稱:">
         <el-input v-model="formData.name"></el-input>
       </el-form-item>
-      <el-form-item size="mini" label="遊戲開關：">
+      <el-form-item size="mini" label="遊戲開關:">
         <el-select v-model="formData.open">
           <el-option label="開啟" value="open"></el-option>
           <el-option label="關閉" value="closed"></el-option>
