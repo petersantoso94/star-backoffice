@@ -2,6 +2,8 @@ import Vue from "vue";
 import {
   Container,
   Checkbox,
+  CheckboxGroup,
+  DatePicker,
   Main,
   TableColumn,
   Table,
@@ -27,6 +29,8 @@ import {
   Form,
   FormItem,
   Input,
+  Radio,
+  RadioGroup,
   Button
 } from "element-ui";
 import lang from "element-ui/lib/locale/lang/en";
@@ -35,6 +39,7 @@ import locale from "element-ui/lib/locale";
 locale.use(lang);
 Vue.use(Container);
 Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
 Vue.use(Col);
 Vue.use(Main);
 Vue.use(TableColumn);
@@ -61,3 +66,6 @@ Vue.use(Button);
 Vue.use(Dialog);
 Vue.use(Row);
 Vue.use(Pagination);
+Vue.use(DatePicker);
+Vue.use(Radio);
+Vue.use(RadioGroup);

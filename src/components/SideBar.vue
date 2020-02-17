@@ -47,7 +47,7 @@ export default {
           { label: "遊戲設定", page: "GameSetting" },
           { label: "用戶設定", page: "UserSetting" },
           { label: "商戶設定", page: "MerchantSetting" },
-          { label: "公告設定" }
+          { label: "公告設定", page: "MarketingSetting" }
         ]
       },
       {

@@ -14,12 +14,32 @@
         筆</el-col
       >
       <el-col :span="6">
-        <el-input
-          style="float:right"
-          v-model="search"
-          size="mini"
-          placeholder="Type to search"
-        />
+        <el-row>
+          <el-col
+            :span="columnToSearch && columnToSearch.length > 0 ? 12 : 24"
+            v-if="exportExcel"
+          >
+            <el-button
+              style="float:right"
+              type="primary"
+              icon="el-icon-document"
+              size="mini"
+              @click="exportExcel"
+              >Export to Excel</el-button
+            >
+          </el-col>
+          <el-col
+            :span="exportExcel ? 12 : 24"
+            v-if="columnToSearch && columnToSearch.length > 0"
+          >
+            <el-input
+              style="float:right"
+              v-model="search"
+              size="mini"
+              placeholder="Type to search"
+            />
+          </el-col>
+        </el-row>
       </el-col>
     </el-row>
     <el-table :data="dataTable" style="width: 100%;">
@@ -47,7 +67,7 @@
 
 <script>
 export default {
-  props: ["data", "columnToSearch"],
+  props: ["data", "columnToSearch", "exportExcel"],
   data: () => ({
     search: "",
     itemPerPage: 10,

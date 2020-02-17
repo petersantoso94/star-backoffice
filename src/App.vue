@@ -35,6 +35,7 @@ import SideBar from "@/components/SideBar.vue";
 import UserSetting from "@/containers/UserSetting.vue";
 import GameSetting from "@/containers/GameSetting.vue";
 import MerchantSetting from "@/containers/MerchantSetting.vue";
+import MarketingSetting from "@/containers/MarketingSetting.vue";
 import EventBus from "@/utilities/event-bus";
 export default {
   name: "app",
@@ -42,7 +43,8 @@ export default {
     SideBar,
     UserSetting,
     GameSetting,
-    MerchantSetting
+    MerchantSetting,
+    MarketingSetting
   },
   data: () => ({
     currentPage: "UserSetting",
