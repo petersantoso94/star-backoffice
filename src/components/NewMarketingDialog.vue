@@ -61,7 +61,13 @@
 <script>
 import { MessageBox } from "element-ui";
 export default {
-  props: ["submitForm", "showDialog", "closeDialog", "add", "formEditMerchant"],
+  props: [
+    "submitForm",
+    "showDialog",
+    "closeDialog",
+    "add",
+    "formEditMarketing"
+  ],
   data: () => ({
     formData: {
       position: ["大厅页面"],
@@ -101,19 +107,12 @@ export default {
     }
   },
   mounted() {
-    console.log(this.formEditMerchant);
+    console.log(this.formEditMarketing);
     if (!this.add) {
       this.formData = {
         ...this.formData,
-        name: this.formEditMerchant.name,
-        version: this.formEditMerchant.version,
-        status: this.formEditMerchant.status ? "啟動" : "關閉",
-        homeUrl: this.formEditMerchant.homeUrl,
-        session: this.formEditMerchant.sessionOpen ? "啟動" : "關閉",
-        customerUrl: this.formEditMerchant.customerUrl,
-        rechargeUrl: this.formEditMerchant.rechargeUrl,
-        reference: this.formEditMerchant.reference,
-        offlineUrl: this.formEditMerchant.offlineUrl
+        title: this.formEditMarketing.title,
+        date: [this.formEditMarketing.startTime, this.formEditMarketing.endTime]
       };
     }
   }

@@ -79,14 +79,92 @@
             </el-table-column>
           </template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="已通過">已通過</el-tab-pane>
-      <el-tab-pane label="未通過">未通過</el-tab-pane>
-      <el-tab-pane label="已刪除">已刪除</el-tab-pane>
+      <el-tab-pane label="已通過"
+        ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
+          <template slot="column">
+            <el-table-column label="編號" prop="id"></el-table-column>
+            <el-table-column label="標題" prop="title"> </el-table-column>
+            <el-table-column label="類型" prop="types"> </el-table-column>
+            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column
+              label="開始時間"
+              prop="startTime"
+            ></el-table-column>
+            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
+            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
+            <el-table-column label="狀態" prop="status"> </el-table-column>
+            <el-table-column label="申請人" prop="applicant"> </el-table-column>
+            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-edit-outline"
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                ></el-button>
+              </template>
+            </el-table-column>
+          </template> </TableWithPageAndSearch
+      ></el-tab-pane>
+      <el-tab-pane label="未通過"
+        ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
+          <template slot="column">
+            <el-table-column label="編號" prop="id"></el-table-column>
+            <el-table-column label="標題" prop="title"> </el-table-column>
+            <el-table-column label="類型" prop="types"> </el-table-column>
+            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column
+              label="開始時間"
+              prop="startTime"
+            ></el-table-column>
+            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
+            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
+            <el-table-column label="狀態" prop="status"> </el-table-column>
+            <el-table-column label="申請人" prop="applicant"> </el-table-column>
+            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-edit-outline"
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                ></el-button>
+              </template>
+            </el-table-column>
+          </template> </TableWithPageAndSearch
+      ></el-tab-pane>
+      <el-tab-pane label="已刪除"
+        ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
+          <template slot="column">
+            <el-table-column label="編號" prop="id"></el-table-column>
+            <el-table-column label="標題" prop="title"> </el-table-column>
+            <el-table-column label="類型" prop="types"> </el-table-column>
+            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column
+              label="開始時間"
+              prop="startTime"
+            ></el-table-column>
+            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
+            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
+            <el-table-column label="狀態" prop="status"> </el-table-column>
+            <el-table-column label="申請人" prop="applicant"> </el-table-column>
+            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-edit-outline"
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                ></el-button>
+              </template>
+            </el-table-column>
+          </template> </TableWithPageAndSearch
+      ></el-tab-pane>
     </el-tabs>
     <NewMarketingDialog
       v-if="showNewMarketingDialog"
       :add="add"
-      :formEditMerchant="selectedMarketing"
+      :formEditMarketing="selectedMarketing"
       :showDialog="showNewMarketingDialog"
       :closeDialog="
         () => {
@@ -170,8 +248,8 @@ export default {
         id: i,
         types: "aa",
         position: "bb",
-        startTime: `2019-07-29 ${i % 24}:29:35`,
-        endTime: `2019-07-29 ${i % 24}:29:35`,
+        startTime: `2019-07-29 00:29:35`,
+        endTime: `2019-07-29 00:29:35`,
         cycle: 22,
         status: "active",
         applicant: "cc",
