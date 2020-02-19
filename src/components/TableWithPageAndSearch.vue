@@ -103,4 +103,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.el-table td,
+.el-table th {
+  border-bottom: 1px solid #ddd !important;
+}
+</style>

@@ -29,6 +29,7 @@ import {
   Form,
   FormItem,
   Input,
+  InputNumber,
   Radio,
   RadioGroup,
   Button
@@ -69,3 +70,4 @@ Vue.use(Pagination);
 Vue.use(DatePicker);
 Vue.use(Radio);
 Vue.use(RadioGroup);
+Vue.use(InputNumber);

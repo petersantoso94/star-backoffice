@@ -36,6 +36,9 @@ import UserSetting from "@/containers/UserSetting.vue";
 import GameSetting from "@/containers/GameSetting.vue";
 import MerchantSetting from "@/containers/MerchantSetting.vue";
 import MarketingSetting from "@/containers/MarketingSetting.vue";
+import AccountSetting from "@/containers/AccountSetting.vue";
+import GroupSetting from "@/containers/GroupSetting.vue";
+import OperationLogs from "@/containers/OperationLogs.vue";
 import EventBus from "@/utilities/event-bus";
 export default {
   name: "app",
@@ -44,10 +47,13 @@ export default {
     UserSetting,
     GameSetting,
     MerchantSetting,
-    MarketingSetting
+    MarketingSetting,
+    AccountSetting,
+    GroupSetting,
+    OperationLogs
   },
   data: () => ({
-    currentPage: "UserSetting",
+    currentPage: "AccountSetting",
     lang: "簡體中文"
   }),
   mounted() {

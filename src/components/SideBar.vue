@@ -4,7 +4,7 @@
       style="height:60px"
       src="http://dev3.starlordtech.net:8000/html/images/logo.png"
     ></el-image>
-    <el-menu :default-active="'4-1'">
+    <el-menu :default-active="'5-0'">
       <el-submenu v-for="(bar, idx) in sideBarArr" :key="idx" :index="idx + ''">
         <template slot="title">{{ bar.name }}</template>
         <el-menu-item-group v-if="bar.submenu.length > 0">
@@ -53,9 +53,9 @@ export default {
       {
         name: "權限中心",
         submenu: [
-          { label: "帳號管理" },
-          { label: "群組管理" },
-          { label: "操作日誌" }
+          { label: "帳號管理", page: "AccountSetting" },
+          { label: "群組管理", page: "GroupSetting" },
+          { label: "操作日誌", page: "OperationLogs" }
         ]
       }
     ]
