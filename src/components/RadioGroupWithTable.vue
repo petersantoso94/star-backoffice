@@ -8,11 +8,14 @@
           <th>報表</th>
         </thead>
         <tbody>
-          <template v-for="(rad, idx) in radioData">
+          <template v-for="(rad, idx) in groupLabelArr">
             <tr :key="idx + '-tr1-'">
-              <td colspan="3" :key="idx">{{ rad.label }}</td>
+              <td colspan="3" :key="idx">{{ rad }}</td>
             </tr>
-            <tr v-for="data in rad.groups" :key="idx + '-tr2-' + data.label">
+            <tr
+              v-for="data in radioData(rad)"
+              :key="idx + '-tr2-' + data.label"
+            >
               <td style="width:15%;padding-left:20px;">
                 {{ data.label }}
               </td>
@@ -49,31 +52,57 @@
 
 <script>
 export default {
+  props: ["groupData"],
   data: () => ({
     authorityOption: ["編輯", "檢視", "隱藏"],
     reportingOption: ["報表匯出", "隱藏"],
-    radioData: [
+    groupLabelArr: ["用戶中心", "遊戲中心", "票務審核"],
+    initRadioData: [
       {
-        label: "用戶中心",
-        groups: [
-          { label: "導流", authority: "編輯", report: "報表匯出" },
-          { label: "首登", authority: "編輯", report: "隱藏" }
-        ]
+        label: "導流",
+        authority: "",
+        report: "",
+        groupLabel: "用戶中心"
       },
       {
-        label: "遊戲中心",
-        groups: [
-          { label: "投注紀錄", authority: "編輯", report: "報表匯出" },
-          { label: "個人損益", authority: "編輯", report: "隱藏" },
-          { label: "商戶損益", authority: "編輯", report: "隱藏" }
-        ]
+        label: "首登",
+        authority: "",
+        report: "",
+        groupLabel: "用戶中心"
+      },
+      {
+        label: "投注紀錄",
+        authority: "",
+        report: "",
+        groupLabel: "遊戲中心"
+      },
+      {
+        label: "個人損益",
+        authority: "",
+        report: "",
+        groupLabel: "遊戲中心"
+      },
+      {
+        label: "商戶損益",
+        authority: "",
+        report: "",
+        groupLabel: "遊戲中心"
       },
       {
         label: "票務審核",
-        groups: [{ label: "票務審核", authority: "編輯", report: "報表匯出" }]
+        authority: "",
+        report: "",
+        groupLabel: "票務審核"
       }
     ]
-  })
+  }),
+  methods: {
+    radioData(req) {
+      let newData = [...this.initRadioData];
+      if (this.groupData) newData = [...this.groupData];
+      return newData.filter(data => data.groupLabel === req);
+    }
+  }
 };
 </script>
 

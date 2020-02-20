@@ -2,10 +2,10 @@
   <el-dialog :visible.sync="show" width="50%">
     <el-form :inline="true" :model="formData">
       <el-form-item size="mini" label="公告标题:">
-        <el-input v-model="formData.title" />
+        <el-input v-model="formData.name" />
       </el-form-item>
       <br />
-      <RadioGroupWithTable />
+      <RadioGroupWithTable :groupData="formEditGroup.groups" />
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button size="mini" @click="closeDialog">取消</el-button>
@@ -26,7 +26,7 @@ export default {
   },
   data: () => ({
     formData: {
-      title: ""
+      name: ""
     }
   }),
   computed: {
@@ -60,7 +60,8 @@ export default {
     console.log(this.formEditGroup);
     if (!this.add) {
       this.formData = {
-        ...this.formData
+        ...this.formData,
+        ...this.formEditGroup
       };
     }
   }
