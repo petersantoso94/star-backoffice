@@ -9,10 +9,10 @@
       <el-tabs type="card" style="margin-top:20px;">
         <el-tab-pane label="個別">
           <el-form-item size="mini" label="帳號:">
-            <el-input v-model="formData.title" />
+            <el-input v-model="formData.id" />
           </el-form-item>
           <el-form-item size="mini" label="密碼:">
-            <el-input v-model="formData.title" />
+            <el-input v-model="formData.account" />
           </el-form-item>
           <el-form-item size="mini" label="群組:">
             <el-checkbox-group
@@ -28,7 +28,7 @@
         <el-tab-pane label="批次">
           <el-form-item size="mini" label="帳號:">
             <el-input
-              v-model="formData.title"
+              v-model="formData.account"
               style="width:225px"
               placeholder="EX: Alisa"
             />
@@ -74,22 +74,14 @@
 <script>
 import { MessageBox } from "element-ui";
 export default {
-  props: [
-    "submitForm",
-    "showDialog",
-    "closeDialog",
-    "add",
-    "formEditMarketing"
-  ],
+  props: ["submitForm", "showDialog", "closeDialog", "add", "formEditMerchant"],
   data: () => ({
     formData: {
       position: ["大厅页面"],
-      title: "",
-      category: "普通",
-      date: [],
-      plays: "重复",
-      time: "",
-      content: ""
+      id: "",
+      account: "",
+      from: "",
+      to: ""
     }
   }),
   computed: {
@@ -120,12 +112,13 @@ export default {
     }
   },
   mounted() {
-    console.log(this.formEditMarketing);
+    console.log(this.formEditMerchant);
     if (!this.add) {
       this.formData = {
         ...this.formData,
-        title: this.formEditMarketing.title,
-        date: [this.formEditMarketing.startTime, this.formEditMarketing.endTime]
+        id: this.formEditMerchant.id,
+        account: this.formEditMerchant.account,
+        position: [this.formEditMerchant.group]
       };
     }
   }

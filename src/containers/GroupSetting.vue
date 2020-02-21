@@ -1,7 +1,11 @@
 <template>
   <div>
     <el-button size="mini" @click="showDialogHandler">新增</el-button>
-    <TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
+    <TableWithPageAndSearch
+      :data="data"
+      :exportExcel="exportExcelHandler"
+      style="margin-top:12px"
+    >
       <template slot="column">
         <el-table-column type="expand" prop="groups">
           <template slot-scope="props">
