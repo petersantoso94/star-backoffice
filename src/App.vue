@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{ $t("message") }}
     <el-container style=" border: 2px solid #eee">
       <SideBar />
       <el-container>
@@ -54,12 +55,17 @@ export default {
   },
   data: () => ({
     currentPage: "AccountSetting",
-    lang: "簡體中文"
+    lang: "en"
   }),
   mounted() {
     EventBus.$on("choose-current-page", page => {
       this.currentPage = page;
     });
+  },
+  watch: {
+    lang: function(val) {
+      this.$i18n.locale = val;
+    }
   }
 };
 </script>
