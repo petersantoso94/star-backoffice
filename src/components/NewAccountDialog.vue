@@ -7,33 +7,33 @@
       :model="formData"
     >
       <el-tabs type="card" style="margin-top:20px;">
-        <el-tab-pane label="個別">
-          <el-form-item size="mini" label="帳號:">
+        <el-tab-pane :label="$t('Individual')">
+          <el-form-item size="mini" :label="$t('AccountNumber') + ':'">
             <el-input v-model="formData.id" />
           </el-form-item>
-          <el-form-item size="mini" label="密碼:">
+          <el-form-item size="mini" :label="$t('Password') + ':'">
             <el-input v-model="formData.account" />
           </el-form-item>
-          <el-form-item size="mini" label="群組:">
+          <el-form-item size="mini" :label="$t('Group') + ':'">
             <el-checkbox-group
               v-model="formData.position"
               style="margin-left:50px"
             >
-              <el-checkbox label="管理員"></el-checkbox>
-              <el-checkbox label="企劃人員"></el-checkbox>
-              <el-checkbox label="客服人員"></el-checkbox>
-              <el-checkbox label="商戶業務"></el-checkbox>
+              <el-checkbox :label="$t('Administrator')"></el-checkbox>
+              <el-checkbox :label="$t('Planner')"></el-checkbox>
+              <el-checkbox :label="$t('CustomerService')"></el-checkbox>
+              <el-checkbox :label="$t('MaintenanceSales')"></el-checkbox>
             </el-checkbox-group> </el-form-item
         ></el-tab-pane>
-        <el-tab-pane label="批次">
-          <el-form-item size="mini" label="帳號:">
+        <el-tab-pane :label="$t('Bbatch')">
+          <el-form-item size="mini" :label="$t('AccountNumber') + ':'">
             <el-input
               v-model="formData.account"
               style="width:225px"
               placeholder="EX: Alisa"
             />
           </el-form-item>
-          <el-form-item size="mini" label="編號:">
+          <el-form-item size="mini" :label="$t('Number') + ':'">
             <div style="width:300px">
               <el-input-number
                 :controls="false"
@@ -48,25 +48,27 @@
               />
             </div>
           </el-form-item>
-          <el-form-item size="mini" label="小計:">9組</el-form-item>
-          <el-form-item size="mini" label="群組:">
+          <el-form-item size="mini" :label="$t('Subtotal') + ':'"
+            >9組</el-form-item
+          >
+          <el-form-item size="mini" :label="$t('GroupName') + ':'">
             <el-checkbox-group
               v-model="formData.position"
               style="margin-left:50px"
             >
-              <el-checkbox label="管理員"></el-checkbox>
-              <el-checkbox label="企劃人員"></el-checkbox>
-              <el-checkbox label="客服人員"></el-checkbox>
-              <el-checkbox label="商戶業務"></el-checkbox>
+              <el-checkbox :label="$t('Administrator')"></el-checkbox>
+              <el-checkbox :label="$t('Planner')"></el-checkbox>
+              <el-checkbox :label="$t('CustomerService')"></el-checkbox>
+              <el-checkbox :label="$t('MaintenanceSales')"></el-checkbox>
             </el-checkbox-group> </el-form-item
         ></el-tab-pane>
       </el-tabs>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
-      <el-button type="primary" size="mini" @click.prevent="openConfirm"
-        >確認</el-button
-      >
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
+      <el-button type="primary" size="mini" @click.prevent="openConfirm">{{
+        $t("Update")
+      }}</el-button>
     </span>
   </el-dialog>
 </template>

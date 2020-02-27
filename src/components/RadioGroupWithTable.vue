@@ -4,8 +4,8 @@
       <table class="tableScrollable">
         <thead>
           <th></th>
-          <th>權限</th>
-          <th>報表</th>
+          <th>{{ $t("Permission") }}</th>
+          <th>{{ $t("Report") }}</th>
         </thead>
         <tbody>
           <template v-for="(rad, idx) in groupLabelArr">

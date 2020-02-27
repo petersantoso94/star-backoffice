@@ -6,24 +6,24 @@
       label-position="right"
       :model="formData"
     >
-      <el-form-item size="mini" label="帳號:">
+      <el-form-item size="mini" :label="$t('AccountNumber') + ':'">
         {{ formData.accountNumber }}
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="帳戶餘額:">
+      <el-form-item size="mini" :label="$t('AccountBalance') + ':'">
         {{ formData.balance }}
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="帳號狀態:">
+      <el-form-item size="mini" :label="$t('AccountStatus') + ':'">
         {{ formData.status ? "凍結" : "一般" }}
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="原因:">
+      <el-form-item size="mini" :label="$t('Reasons')">
         <el-input type="textarea" v-model="formData.desc"></el-input
       ></el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
       <el-button
         type="primary"
         size="mini"

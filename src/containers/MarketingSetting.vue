@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-button size="mini" @click="showDialogHandler">新增</el-button>
+    <el-button size="mini" @click="showDialogHandler">{{
+      $t("NewData")
+    }}</el-button>
     <el-form
       :inline="true"
       :model="searchForm"
@@ -8,17 +10,17 @@
       style="margin-top:20px"
       size="mini"
     >
-      <el-form-item label="公告標題:">
+      <el-form-item :label="$t('AnnouncementsTitle') + ':'">
         <el-input v-model="searchForm.title" />
       </el-form-item>
-      <el-form-item label="類型:">
+      <el-form-item :label="$t('Type') + ':'">
         <el-select v-model="searchForm.type" placeholder="請選擇">
-          <el-option label="全部" value="全部"></el-option>
-          <el-option label="一般" value="一般"></el-option>
-          <el-option label="緊急" value="緊急"></el-option>
+          <el-option :label="$t('All')" value="全部"></el-option>
+          <el-option :label="$t('General')" value="一般"></el-option>
+          <el-option :label="$t('Urgent')" value="緊急"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="日期:"
+      <el-form-item :label="$t('Date') + ':'"
         ><el-date-picker
           v-model="searchForm.date"
           type="datetimerange"
@@ -33,42 +35,58 @@
       </el-form-item>
     </el-form>
     <el-tabs type="card" style="margin-top:20px;">
-      <el-tab-pane label="全部">
+      <el-tab-pane :label="$t('All')">
         <TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
           <template slot="column">
-            <el-table-column label="編號" prop="id"></el-table-column>
-            <el-table-column label="標題" prop="title"> </el-table-column>
-            <el-table-column label="類型" prop="types"> </el-table-column>
-            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+            <el-table-column :label="$t('Title')" prop="title">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="types">
+            </el-table-column>
+            <el-table-column :label="$t('Location')" prop="position">
+            </el-table-column>
             <el-table-column
-              label="開始時間"
+              :label="$t('StartTime')"
               prop="startTime"
             ></el-table-column>
-            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
-            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
-            <el-table-column label="狀態" prop="status"> </el-table-column>
-            <el-table-column label="申請人" prop="applicant"> </el-table-column>
-            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
+            <el-table-column :label="$t('EndTime')" prop="endTime">
+            </el-table-column>
+            <el-table-column :label="$t('LoopSec')" prop="cycle">
+            </el-table-column>
+            <el-table-column :label="$t('Status')" prop="status">
+            </el-table-column>
+            <el-table-column :label="$t('Applicant')" prop="applicant">
+            </el-table-column>
+            <el-table-column :label="$t('Auditor')" prop="reviewer">
+            </el-table-column>
           </template>
         </TableWithPageAndSearch>
       </el-tab-pane>
-      <el-tab-pane label="待審核"
+      <el-tab-pane :label="$t('PendingReview')"
         ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
           <template slot="column">
-            <el-table-column label="編號" prop="id"></el-table-column>
-            <el-table-column label="標題" prop="title"> </el-table-column>
-            <el-table-column label="類型" prop="types"> </el-table-column>
-            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+            <el-table-column :label="$t('Title')" prop="title">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="types">
+            </el-table-column>
+            <el-table-column :label="$t('Location')" prop="position">
+            </el-table-column>
             <el-table-column
-              label="開始時間"
+              :label="$t('StartTime')"
               prop="startTime"
             ></el-table-column>
-            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
-            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
-            <el-table-column label="狀態" prop="status"> </el-table-column>
-            <el-table-column label="申請人" prop="applicant"> </el-table-column>
-            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('EndTime')" prop="endTime">
+            </el-table-column>
+            <el-table-column :label="$t('LoopSec')" prop="cycle">
+            </el-table-column>
+            <el-table-column :label="$t('Status')" prop="status">
+            </el-table-column>
+            <el-table-column :label="$t('Applicant')" prop="applicant">
+            </el-table-column>
+            <el-table-column :label="$t('Auditor')" prop="reviewer">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -79,23 +97,31 @@
             </el-table-column>
           </template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="已通過"
+      <el-tab-pane :label="$t('Passed')"
         ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
           <template slot="column">
-            <el-table-column label="編號" prop="id"></el-table-column>
-            <el-table-column label="標題" prop="title"> </el-table-column>
-            <el-table-column label="類型" prop="types"> </el-table-column>
-            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+            <el-table-column :label="$t('Title')" prop="title">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="types">
+            </el-table-column>
+            <el-table-column :label="$t('Location')" prop="position">
+            </el-table-column>
             <el-table-column
-              label="開始時間"
+              :label="$t('StartTime')"
               prop="startTime"
             ></el-table-column>
-            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
-            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
-            <el-table-column label="狀態" prop="status"> </el-table-column>
-            <el-table-column label="申請人" prop="applicant"> </el-table-column>
-            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('EndTime')" prop="endTime">
+            </el-table-column>
+            <el-table-column :label="$t('LoopSec')" prop="cycle">
+            </el-table-column>
+            <el-table-column :label="$t('Status')" prop="status">
+            </el-table-column>
+            <el-table-column :label="$t('Applicant')" prop="applicant">
+            </el-table-column>
+            <el-table-column :label="$t('Auditor')" prop="reviewer">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -106,23 +132,31 @@
             </el-table-column>
           </template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="未通過"
+      <el-tab-pane :label="$t('Rejected')"
         ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
           <template slot="column">
-            <el-table-column label="編號" prop="id"></el-table-column>
-            <el-table-column label="標題" prop="title"> </el-table-column>
-            <el-table-column label="類型" prop="types"> </el-table-column>
-            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+            <el-table-column :label="$t('Title')" prop="title">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="types">
+            </el-table-column>
+            <el-table-column :label="$t('Location')" prop="position">
+            </el-table-column>
             <el-table-column
-              label="開始時間"
+              :label="$t('StartTime')"
               prop="startTime"
             ></el-table-column>
-            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
-            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
-            <el-table-column label="狀態" prop="status"> </el-table-column>
-            <el-table-column label="申請人" prop="applicant"> </el-table-column>
-            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('EndTime')" prop="endTime">
+            </el-table-column>
+            <el-table-column :label="$t('LoopSec')" prop="cycle">
+            </el-table-column>
+            <el-table-column :label="$t('Status')" prop="status">
+            </el-table-column>
+            <el-table-column :label="$t('Applicant')" prop="applicant">
+            </el-table-column>
+            <el-table-column :label="$t('Auditor')" prop="reviewer">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -133,23 +167,31 @@
             </el-table-column>
           </template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="已刪除"
+      <el-tab-pane :label="$t('Deleted')"
         ><TableWithPageAndSearch :data="data" :exportExcel="exportExcelHandler">
           <template slot="column">
-            <el-table-column label="編號" prop="id"></el-table-column>
-            <el-table-column label="標題" prop="title"> </el-table-column>
-            <el-table-column label="類型" prop="types"> </el-table-column>
-            <el-table-column label="位置" prop="position"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+            <el-table-column :label="$t('Title')" prop="title">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="types">
+            </el-table-column>
+            <el-table-column :label="$t('Location')" prop="position">
+            </el-table-column>
             <el-table-column
-              label="開始時間"
+              :label="$t('StartTime')"
               prop="startTime"
             ></el-table-column>
-            <el-table-column label="結束時間" prop="endTime"> </el-table-column>
-            <el-table-column label="循環秒數" prop="cycle"> </el-table-column>
-            <el-table-column label="狀態" prop="status"> </el-table-column>
-            <el-table-column label="申請人" prop="applicant"> </el-table-column>
-            <el-table-column label="審核人" prop="reviewer"> </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('EndTime')" prop="endTime">
+            </el-table-column>
+            <el-table-column :label="$t('LoopSec')" prop="cycle">
+            </el-table-column>
+            <el-table-column :label="$t('Status')" prop="status">
+            </el-table-column>
+            <el-table-column :label="$t('Applicant')" prop="applicant">
+            </el-table-column>
+            <el-table-column :label="$t('Auditor')" prop="reviewer">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"

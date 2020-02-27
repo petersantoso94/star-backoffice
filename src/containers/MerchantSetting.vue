@@ -1,31 +1,48 @@
 <template>
   <div>
-    <el-button size="mini" @click="showDialogHandler">新增</el-button>
+    <el-button size="mini" @click="showDialogHandler">{{
+      $t("NewData")
+    }}</el-button>
     <TableWithPageAndSearch
       style="margin-top:20px"
       :data="data"
       :columnToSearch="columnToSearch"
     >
       <template slot="column">
-        <el-table-column label="商戶名稱" prop="name"> </el-table-column>
-        <el-table-column label="版本號" prop="version"> </el-table-column>
-        <el-table-column label="商戶開通" prop="status"
+        <el-table-column :label="$t('Merchant')" prop="name"> </el-table-column>
+        <el-table-column :label="$t('VersionNumber')" prop="version">
+        </el-table-column>
+        <el-table-column :label="$t('OpenMerchant')" prop="status"
           ><template slot-scope="scope">
-            {{ scope.row.status ? "開" : "關" }}
+            {{ scope.row.status ? $t("On") : $t("Off") }}
           </template>
         </el-table-column>
-        <el-table-column label="商戶首頁" prop="homeUrl"> </el-table-column>
-        <el-table-column label="離線回調" prop="offlineUrl"></el-table-column>
-        <el-table-column label="夾帶SESSION" prop="sessionOpen">
+        <el-table-column :label="$t('MerchantHomePage')" prop="homeUrl">
+        </el-table-column>
+        <el-table-column
+          :label="$t('OfflineCallback')"
+          prop="offlineUrl"
+        ></el-table-column>
+        <el-table-column :label="$t('SessionEntrained')" prop="sessionOpen">
           <template slot-scope="scope">
-            {{ scope.row.sessionOpen ? "啟動" : "關閉" }}
+            {{ scope.row.sessionOpen ? "啟動" : $t("Off") }}
           </template>
         </el-table-column>
-        <el-table-column label="參照資源" prop="reference"></el-table-column>
-        <el-table-column label="充值頁" prop="rechargeUrl"></el-table-column>
-        <el-table-column label="客服頁" prop="customerUrl"></el-table-column>
-        <el-table-column label="更新時間" prop="update"> </el-table-column
-        ><el-table-column label="操作">
+        <el-table-column
+          :label="$t('ReferenceResource')"
+          prop="reference"
+        ></el-table-column>
+        <el-table-column
+          :label="$t('RechargePage')"
+          prop="rechargeUrl"
+        ></el-table-column>
+        <el-table-column
+          :label="$t('CustomerServicePage')"
+          prop="customerUrl"
+        ></el-table-column>
+        <el-table-column :label="$t('UpdateTime')" prop="update">
+        </el-table-column
+        ><el-table-column :label="$t('Actions')">
           <template slot-scope="scope">
             <el-button
               icon="el-icon-edit-outline"

@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-tabs type="card" @tab-click="tabClickHandler" value="open">
-      <el-tab-pane label="用戶管理" name="open" key="open">
+      <el-tab-pane :label="$t('UserManagement')" name="open" key="open">
         <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-          <el-form-item label="商戶:">
+          <el-form-item :label="$t('Merchant') + ':'">
             <el-select v-model="searchForm.merchant" placeholder="請選擇">
               <el-option label="AD" value="ad"></el-option>
               <el-option label="SL" value="sl"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="帳號:">
+          <el-form-item :label="$t('Number') + ':'">
             <el-input v-model="searchForm.account" />
           </el-form-item>
           <el-form-item>
@@ -21,15 +21,18 @@
           :columnToSearch="userManagementColumnSearch"
         >
           <template slot="column"
-            ><el-table-column label="商戶" prop="merchant"> </el-table-column>
-            <el-table-column label="帳號" prop="accountNumber">
+            ><el-table-column :label="$t('Merchant')" prop="merchant">
             </el-table-column>
-            <el-table-column label="暱稱" prop="nickname"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="accountNumber">
+            </el-table-column>
+            <el-table-column :label="$t('NickName')" prop="nickname">
+            </el-table-column>
             <el-table-column label="USER ID" prop="uuid"> </el-table-column>
-            <el-table-column label="帳戶餘額" prop="balance"> </el-table-column>
-            <el-table-column label="最近登入時間" prop="lastLogin">
+            <el-table-column :label="$t('AccountBalance')" prop="balance">
             </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('LastLoginTime')" prop="lastLogin">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -39,15 +42,15 @@
               </template> </el-table-column
           ></template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="凍結名單" name="closed" key="closed">
+      <el-tab-pane :label="$t('FrozenList')" name="closed" key="closed">
         <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-          <el-form-item label="商戶:">
+          <el-form-item :label="$t('Merchant') + ':'">
             <el-select v-model="searchForm.merchant" placeholder="請選擇">
               <el-option label="AD" value="ad"></el-option>
               <el-option label="SL" value="sl"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="帳號:">
+          <el-form-item :label="$t('AccountNumber') + ':'">
             <el-input v-model="searchForm.account" />
           </el-form-item>
           <el-form-item>
@@ -58,15 +61,18 @@
           :columnToSearch="userManagementColumnSearch"
         >
           <template slot="column"
-            ><el-table-column label="商戶" prop="merchant"> </el-table-column>
-            <el-table-column label="帳號" prop="accountNumber">
+            ><el-table-column :label="$t('Merchant')" prop="merchant">
             </el-table-column>
-            <el-table-column label="暱稱" prop="nickname"> </el-table-column>
+            <el-table-column :label="$t('Number')" prop="accountNumber">
+            </el-table-column>
+            <el-table-column :label="$t('NickName')" prop="nickname">
+            </el-table-column>
             <el-table-column label="USER ID" prop="uuid"> </el-table-column>
-            <el-table-column label="帳戶餘額" prop="balance"> </el-table-column>
-            <el-table-column label="最近登入時間" prop="lastLogin">
+            <el-table-column :label="$t('AccountBalance')" prop="balance">
             </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('LastLoginTime')" prop="lastLogin">
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -76,9 +82,9 @@
               </template> </el-table-column
           ></template> </TableWithPageAndSearch
       ></el-tab-pane>
-      <el-tab-pane label="凍結LOG">
+      <el-tab-pane :label="$t('FrozenLog')">
         <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-          <el-form-item label="查詢-帳號:">
+          <el-form-item :label="$t('Number')">
             <el-input v-model="searchForm.account" size="mini" />
           </el-form-item>
           <el-form-item>
@@ -93,17 +99,23 @@
           :columnToSearch="userManagementColumnSearch"
         >
           <template slot="column">
-            <el-table-column label="帳號" prop="accountNumber">
+            <el-table-column :label="$t('Number')" prop="accountNumber">
             </el-table-column>
-            <el-table-column label="暱稱" prop="nickname"> </el-table-column>
-            <el-table-column label="帳戶餘額" prop="balance"> </el-table-column>
-            <el-table-column label="種類" prop="status">
+            <el-table-column :label="$t('NickName')" prop="nickname">
+            </el-table-column>
+            <el-table-column :label="$t('AccountBalance')" prop="balance">
+            </el-table-column>
+            <el-table-column :label="$t('Type')" prop="status">
               <template slot-scope="scope">
                 {{ scope.row.status ? "凍結" : "一般" }}
               </template></el-table-column
             >
-            <el-table-column label="時間" prop="lastLogin"></el-table-column>
-            <el-table-column label="操作人" prop="operator"> </el-table-column
+            <el-table-column
+              :label="$t('Time')"
+              prop="lastLogin"
+            ></el-table-column>
+            <el-table-column :label="$t('Operator')" prop="operator">
+            </el-table-column
           ></template> </TableWithPageAndSearch
       ></el-tab-pane>
     </el-tabs>

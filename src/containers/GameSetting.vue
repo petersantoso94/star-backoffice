@@ -1,16 +1,16 @@
 <template>
   <div>
     <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-      <el-form-item label="商戶:">
+      <el-form-item :label="$t('Merchant') + ':'">
         <el-select v-model="searchForm.merchant" placeholder="請選擇">
           <el-option label="AD" value="ad"></el-option>
           <el-option label="SL" value="sl"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="排序:">
-        <el-select v-model="searchForm.sort" placeholder="請選擇">
-          <el-option label="請選擇" value="請選擇"></el-option>
-          <el-option label="上線時間" value="上線時間"></el-option>
+      <el-form-item :label="$t('SortBy') + ':'">
+        <el-select v-model="searchForm.sort" :placeholder="$t('GameLabel')">
+          <el-option :label="$t('GameLabel')" value="游戏标签"></el-option>
+          <el-option :label="$t('ReleasedTime')" value="上線時間"></el-option>
           <el-option label="遊戲標籤" value="遊戲標籤"></el-option>
           <el-option label="羅馬拼音" value="羅馬拼音"></el-option>
         </el-select>
@@ -20,22 +20,31 @@
       </el-form-item>
     </el-form>
     <el-tabs type="card" @tab-click="tabClickHandler" value="open">
-      <el-tab-pane name="open" key="open" label="啟用遊戲">
+      <el-tab-pane name="open" key="open" :label="$t('EnableGame')">
         <TableWithPageAndSearch
           :data="dataTable"
           :columnToSearch="columnToSearch"
         >
           <template slot="column"
-            ><el-table-column label="遊戲編號" prop="id"> </el-table-column>
-            <el-table-column label="遊戲名稱" prop="name"> </el-table-column>
-            <el-table-column label="維護開關" prop="maintenance">
+            ><el-table-column :label="$t('GameNumber')" prop="id">
             </el-table-column>
-            <el-table-column label="遊戲標籤" prop="tags"> </el-table-column>
-            <el-table-column label="遊戲類別" prop="category">
+            <el-table-column :label="$t('GameName')" prop="name">
             </el-table-column>
-            <el-table-column label="最後操作時間" prop="lastOperation">
+            <el-table-column
+              :label="$t('MaintenanceSwitch')"
+              prop="maintenance"
+            >
             </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('GameLabel')" prop="tags">
+            </el-table-column>
+            <el-table-column :label="$t('GameType')" prop="category">
+            </el-table-column>
+            <el-table-column
+              :label="$t('LastOperationTime')"
+              prop="lastOperation"
+            >
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"
@@ -46,22 +55,31 @@
           ></template>
         </TableWithPageAndSearch>
       </el-tab-pane>
-      <el-tab-pane name="closed" key="closed" label="關閉遊戲">
+      <el-tab-pane name="closed" key="closed" :label="$t('DisableGame')">
         <TableWithPageAndSearch
           :data="dataTable"
           :columnToSearch="columnToSearch"
         >
           <template slot="column"
-            ><el-table-column label="遊戲編號" prop="id"> </el-table-column>
-            <el-table-column label="遊戲名稱" prop="name"> </el-table-column>
-            <el-table-column label="維護開關" prop="maintenance">
+            ><el-table-column :label="$t('GameNumber')" prop="id">
             </el-table-column>
-            <el-table-column label="遊戲標籤" prop="tags"> </el-table-column>
-            <el-table-column label="遊戲類別" prop="category">
+            <el-table-column :label="$t('GameName')" prop="name">
             </el-table-column>
-            <el-table-column label="最後操作時間" prop="lastOperation">
+            <el-table-column
+              :label="$t('MaintenanceSwitch')"
+              prop="maintenance"
+            >
             </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column :label="$t('GameLabel')" prop="tags">
+            </el-table-column>
+            <el-table-column :label="$t('GameType')" prop="category">
+            </el-table-column>
+            <el-table-column
+              :label="$t('LastOperationTime')"
+              prop="lastOperation"
+            >
+            </el-table-column>
+            <el-table-column :label="$t('Actions')">
               <template slot-scope="scope">
                 <el-button
                   icon="el-icon-edit-outline"

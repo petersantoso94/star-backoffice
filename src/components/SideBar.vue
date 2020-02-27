@@ -25,41 +25,46 @@
 import { ChooseCurrentPage } from "@/utilities/event-bus";
 export default {
   name: "SideBar",
-  data: () => ({
-    sideBarArr: [
-      { name: "用戶分析", submenu: [] },
-      {
-        name: "盈虧報表",
-        submenu: [{ label: "投注紀錄" }, { label: "損益紀錄" }]
-      },
-      { name: "票務審核", submenu: [] },
-      {
-        name: "金流分析",
-        submenu: [
-          { label: "平台紀錄" },
-          { label: "個人紀錄" },
-          { label: "個人管理" }
-        ]
-      },
-      {
-        name: "營銷管理",
-        submenu: [
-          { label: "遊戲設定", page: "GameSetting" },
-          { label: "用戶設定", page: "UserSetting" },
-          { label: "商戶設定", page: "MerchantSetting" },
-          { label: "公告設定", page: "MarketingSetting" }
-        ]
-      },
-      {
-        name: "權限中心",
-        submenu: [
-          { label: "帳號管理", page: "AccountSetting" },
-          { label: "群組管理", page: "GroupSetting" },
-          { label: "操作日誌", page: "OperationLogs" }
-        ]
-      }
-    ]
-  }),
+  computed: {
+    sideBarArr: function() {
+      return [
+        { name: this.$t("PlayersAnalysis"), submenu: [] },
+        {
+          name: this.$t("BalanceReview"),
+          submenu: [
+            { label: this.$t("GameRecords") },
+            { label: this.$t("BalanceRecords") }
+          ]
+        },
+        { name: this.$t("AccountingAudit"), submenu: [] },
+        {
+          name: this.$t("AccountingAnalysis"),
+          submenu: [
+            { label: this.$t("PlatformRecords") },
+            { label: this.$t("PlayersRecords") },
+            { label: this.$t("PlayersManage") }
+          ]
+        },
+        {
+          name: this.$t("MarketingSettings"),
+          submenu: [
+            { label: this.$t("SettingGames"), page: "GameSetting" },
+            { label: this.$t("SettingUsers"), page: "UserSetting" },
+            { label: this.$t("SettingSubsidiary"), page: "MerchantSetting" },
+            { label: this.$t("SettingAnnouncements"), page: "MarketingSetting" }
+          ]
+        },
+        {
+          name: this.$t("PrivilegeManage"),
+          submenu: [
+            { label: this.$t("PermissionUsers"), page: "AccountSetting" },
+            { label: this.$t("PermissionGroups"), page: "GroupSetting" },
+            { label: this.$t("OperationLogs"), page: "OperationLogs" }
+          ]
+        }
+      ];
+    }
+  },
   methods: {
     goToPage: page => {
       ChooseCurrentPage(page);

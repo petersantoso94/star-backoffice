@@ -1,17 +1,17 @@
 <template>
   <el-dialog :visible.sync="show" width="50%">
     <el-form :inline="true" :model="formData">
-      <el-form-item size="mini" label="公告标题:">
+      <el-form-item size="mini" :label="$t('AnnouncementsTitle') + ':'">
         <el-input v-model="formData.name" />
       </el-form-item>
       <br />
       <RadioGroupWithTable :groupData="formEditGroup.groups" />
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
-      <el-button type="primary" size="mini" @click.prevent="openConfirm"
-        >確認</el-button
-      >
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
+      <el-button type="primary" size="mini" @click.prevent="openConfirm">{{
+        $t("Confirm")
+      }}</el-button>
     </span>
   </el-dialog>
 </template>

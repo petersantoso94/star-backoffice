@@ -6,25 +6,25 @@
       label-position="right"
       :model="formData"
     >
-      <el-form-item size="mini" label="公告位置:">
+      <el-form-item size="mini" :label="$t('SettingAnnouncements') + ':'">
         <el-checkbox-group v-model="formData.position">
           <el-checkbox label="大厅页面"></el-checkbox>
           <el-checkbox label="游戏页面"></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="公告标题:">
+      <el-form-item size="mini" :label="$t('AnnouncementsTitle') + ':'">
         <el-input v-model="formData.title" style="width: 400px;" />
       </el-form-item>
       <br />
       <el-form-item size="mini" label="公告类别:">
         <el-radio-group v-model="formData.category">
-          <el-radio label="普通">普通</el-radio>
-          <el-radio label="紧急">紧急</el-radio>
+          <el-radio label="普通">{{ $t("General") }}</el-radio>
+          <el-radio label="紧急">{{ $t("Urgent") }}</el-radio>
         </el-radio-group>
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="发布时间:">
+      <el-form-item size="mini" :label="$t('ReleasedTime') + ':'">
         <el-date-picker
           v-model="formData.date"
           type="datetimerange"
@@ -34,14 +34,14 @@
         ></el-date-picker>
       </el-form-item>
       <br />
-      <el-form-item size="mini" label="播放次数:">
+      <el-form-item size="mini" :label="$t('Frequency') + ':'">
         <el-radio-group v-model="formData.plays">
-          <el-radio label="一次">一次</el-radio>
+          <el-radio label="一次">{{ $t("Once") }}</el-radio>
           <el-radio label="重复">重复</el-radio>
         </el-radio-group>
         , 每
         <el-input v-model="formData.time" style="width:40%" />
-        秒重复播放
+        {{ $t("RepeatEveryXSec") }}
       </el-form-item>
       <br />
       <el-form-item size="mini" label="公告内容:">
@@ -50,10 +50,10 @@
       <br />
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
-      <el-button type="primary" size="mini" @click.prevent="openConfirm"
-        >更新</el-button
-      >
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
+      <el-button type="primary" size="mini" @click.prevent="openConfirm">{{
+        $t("Update")
+      }}</el-button>
     </span>
   </el-dialog>
 </template>

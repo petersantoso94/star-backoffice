@@ -1,6 +1,6 @@
 <template>
   <div>
-    查詢<br />
+    {{ $t("Inquire") }}<br />
     <el-form
       :inline="true"
       :model="searchForm"
@@ -8,10 +8,10 @@
       style="margin-top:20px"
       size="mini"
     >
-      <el-form-item label="帳號:">
+      <el-form-item :label="$t('AccountNumber') + ':'">
         <el-input v-model="searchForm.account" />
       </el-form-item>
-      <el-form-item label="*轉入時間:"
+      <el-form-item :label="'*' + $t('Time') + ':'"
         ><el-date-picker
           v-model="searchForm.date"
           type="datetimerange"
@@ -31,11 +31,16 @@
       style="margin-top:20px"
     >
       <template slot="column">
-        <el-table-column label="流水號" prop="id"></el-table-column>
-        <el-table-column label="後台帳號" prop="account"> </el-table-column>
-        <el-table-column label="動作" prop="action"> </el-table-column>
+        <el-table-column
+          :label="$t('SerialNumber')"
+          prop="id"
+        ></el-table-column>
+        <el-table-column :label="$t('BackOfficeAccount')" prop="account">
+        </el-table-column>
+        <el-table-column :label="$t('Actions')" prop="action">
+        </el-table-column>
         <el-table-column label="IP" prop="ip"> </el-table-column>
-        <el-table-column label="時間" prop="time"> </el-table-column>
+        <el-table-column :label="$t('Time')" prop="time"> </el-table-column>
       </template>
     </TableWithPageAndSearch>
   </div>

@@ -1,8 +1,9 @@
 <template>
   <div>
     <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-      <strong>查詢</strong><br />
-      <el-form-item label="帳號:" size="mini">
+      <strong>{{ $t("Inquire") }}</strong
+      ><br />
+      <el-form-item :label="$t('AccountNumber') + ':'" size="mini">
         <el-input v-model="searchForm.name" />
       </el-form-item>
 
@@ -10,24 +11,28 @@
         <el-button @click="onSubmit" icon="el-icon-search"></el-button>
       </el-form-item>
     </el-form>
-    <el-button size="mini" @click="showDialogHandler">新增</el-button><br />
+    <el-button size="mini" @click="showDialogHandler">{{ $t("Add") }}</el-button
+    ><br />
     <TableWithPageAndSearch
       :data="data"
       :exportExcel="exportExcelHandler"
       style="margin-top:20px"
     >
       <template slot="column"
-        ><el-table-column label="編號" prop="id"> </el-table-column>
-        <el-table-column label="後台帳號" prop="account"> </el-table-column>
-        <el-table-column label="商戶" prop="merchant"> </el-table-column>
-        <el-table-column label="狀態" prop="status"
+        ><el-table-column :label="$t('Number')" prop="id"> </el-table-column>
+        <el-table-column :label="$t('BackOfficeAccount')" prop="account">
+        </el-table-column>
+        <el-table-column :label="$t('Merchant')" prop="merchant">
+        </el-table-column>
+        <el-table-column :label="$t('Status')" prop="status"
           ><template slot-scope="scope">
-            {{ scope.row.status ? "開" : "關" }}
+            {{ scope.row.status ? $t("On") : $t("Off") }}
           </template>
         </el-table-column>
-        <el-table-column label="群組" prop="group"> </el-table-column>
-        <el-table-column label="建立時間" prop="setUpTime"> </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column :label="$t('Group')" prop="group"> </el-table-column>
+        <el-table-column :label="$t('SetupTime')" prop="setUpTime">
+        </el-table-column>
+        <el-table-column :label="$t('Actions')">
           <template slot-scope="scope">
             <el-button
               icon="el-icon-edit-outline"

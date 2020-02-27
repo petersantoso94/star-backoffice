@@ -14,10 +14,10 @@
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
-      <el-button type="primary" size="mini" @click.prevent="submitForm"
-        >確認</el-button
-      >
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
+      <el-button type="primary" size="mini" @click.prevent="submitForm">{{
+        $t("Confirm")
+      }}</el-button>
     </span>
   </el-dialog>
 </template>

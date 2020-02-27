@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    {{ $t("message") }}
     <el-container style=" border: 2px solid #eee">
       <SideBar />
       <el-container>

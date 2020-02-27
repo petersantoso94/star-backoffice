@@ -6,46 +6,54 @@
       label-position="right"
       :model="formData"
     >
-      <el-form-item size="mini" style="margin-right:27px" label="商戶名稱:">
+      <el-form-item
+        size="mini"
+        style="margin-right:27px"
+        :label="$t('Merchant') + ':'"
+      >
         <el-input v-model="formData.name" placeholder="AD" />
       </el-form-item>
-      <el-form-item size="mini" label="版本號:">
+      <el-form-item size="mini" :label="$t('VersionNumber') + ':'">
         <el-input v-model="formData.version" placeholder="123123132" />
       </el-form-item>
-      <el-form-item size="mini" label="商戶開通:">
+      <el-form-item size="mini" :label="$t('OpenMerchant') + ':'">
         <el-select v-model="formData.status" placeholder="請選擇">
-          <el-option label="啟動" value="啟動"></el-option>
-          <el-option label="關閉" value="關閉"></el-option>
+          <el-option :label="$t('On')" value="啟動"></el-option>
+          <el-option :label="$t('Off')" value="關閉"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item size="mini" label="商戶首頁:">
+      <el-form-item size="mini" :label="$t('MerchantHomePage') + ':'">
         <el-input
           v-model="formData.homeUrl"
           placeholder="http://starlord.test"
         />
       </el-form-item>
-      <el-form-item size="mini" label="夾帶SESSION:">
+      <el-form-item size="mini" :label="$t('SessionEntrained') + ':'">
         <el-select v-model="formData.session" placeholder="請選擇">
-          <el-option label="啟動" value="啟動"></el-option>
-          <el-option label="關閉" value="關閉"></el-option>
+          <el-option :label="$t('On')" value="啟動"></el-option>
+          <el-option :label="$t('Off')" value="關閉"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item size="mini" label="客服頁:">
+      <el-form-item size="mini" :label="$t('CustomerServicePage') + ':'">
         <el-input
           v-model="formData.customerUrl"
           placeholder="http://starlord.test"
         />
       </el-form-item>
-      <el-form-item size="mini" style="margin-right:27px" label="充值頁:">
+      <el-form-item
+        size="mini"
+        style="margin-right:27px"
+        :label="$t('RechargePage') + ':'"
+      >
         <el-input
           v-model="formData.rechargeUrl"
           placeholder="http://starlord.test"
         />
       </el-form-item>
-      <el-form-item size="mini" label="參照資源:">
+      <el-form-item size="mini" :label="$t('ReferenceResource') + ':'">
         <el-input v-model="formData.reference" placeholder="SL" />
       </el-form-item>
-      <el-form-item size="mini" label="離線回調:">
+      <el-form-item size="mini" :label="$t('OfflineCallback') + ':'">
         <el-input
           v-model="formData.offlineUrl"
           placeholder="http://starlord.test"
@@ -53,10 +61,10 @@
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="closeDialog">取消</el-button>
-      <el-button type="primary" size="mini" @click.prevent="openConfirm"
-        >更新</el-button
-      >
+      <el-button size="mini" @click="closeDialog">{{ $t("Cancel") }}</el-button>
+      <el-button type="primary" size="mini" @click.prevent="openConfirm">{{
+        $t("Update")
+      }}</el-button>
     </span>
   </el-dialog>
 </template>

@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" class="row-bg" justify="space-between">
       <el-col :span="6"
-        >每頁:
+        >{{ $t("PerPage") }}:
         <el-select v-model="itemPerPage" placeholder="10" size="mini">
           <el-option
             v-for="(numPage, idx) in itemPerPageArr"
@@ -11,7 +11,7 @@
             :value="numPage"
           ></el-option>
         </el-select>
-        筆</el-col
+        {{ $t("Row") }}</el-col
       >
       <el-col :span="6">
         <el-row>
@@ -25,7 +25,7 @@
               icon="el-icon-document"
               size="mini"
               @click="exportExcel"
-              >Export to Excel</el-button
+              >{{ $t("ExportExcel") }}</el-button
             >
           </el-col>
           <el-col

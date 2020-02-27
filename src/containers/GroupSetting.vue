@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-button size="mini" @click="showDialogHandler">新增</el-button>
+    <el-button size="mini" @click="showDialogHandler">{{
+      $t("Add")
+    }}</el-button>
     <TableWithPageAndSearch
       :data="data"
       :exportExcel="exportExcelHandler"
@@ -12,10 +14,12 @@
             <RadioGroupWithTable :groupData="props.row.groups" />
           </template>
         </el-table-column>
-        <el-table-column label="编号" prop="id"></el-table-column>
-        <el-table-column label="群组名称" prop="name"> </el-table-column>
-        <el-table-column label="建立时间" prop="created"> </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column :label="$t('Number')" prop="id"></el-table-column>
+        <el-table-column :label="$t('GroupName')" prop="name">
+        </el-table-column>
+        <el-table-column :label="$t('LastOperationTime')" prop="created">
+        </el-table-column>
+        <el-table-column :label="$t('Actions')">
           <template slot-scope="scope">
             <el-button
               icon="el-icon-edit-outline"
